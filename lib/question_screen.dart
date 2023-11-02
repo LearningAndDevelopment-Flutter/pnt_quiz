@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pnt_quiz/answer_button.dart';
 import 'package:pnt_quiz/data/question.dart';
 
@@ -30,9 +31,10 @@ class _QuestionQuestionState extends State<QuestionScreen> {
           children: [
             Text(
               currentQuestion.question,
-              style: const TextStyle(
+              style: GoogleFonts.dancingScript(
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
