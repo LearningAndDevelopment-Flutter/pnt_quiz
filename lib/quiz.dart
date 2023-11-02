@@ -26,7 +26,6 @@ class _QuizState extends State<Quiz> {
   void switchScreen() {
     setState(() {
       activeScreen = 'question_screen';
-      print("Test");
     });
   }
 
