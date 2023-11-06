@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionSummary extends StatelessWidget {
   const QuestionSummary(this.summaryData, {super.key});
@@ -7,28 +8,74 @@ class QuestionSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map((data) {
-        return Row(
-          children: [
-            Text(
-              ((data['question_index'] as int) + 1).toString(),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(data['question'].toString()),
-                  const SizedBox(
-                    height: 5,
+    return SizedBox(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map((data) {
+            return Row(
+              children: [
+                ClipOval(
+                  child: Container(
+                    color: data['user_answer'].toString() ==
+                            data['correct_answer'].toString()
+                        ? Colors.green
+                        : Colors.red,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
+                    child: Text(
+                      ((data['question_index'] as int) + 1).toString(),
+                      style: GoogleFonts.dancingScript(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                  Text(data['user_answer'].toString()),
-                  Text(data['correct_answer'].toString()),
-                ],
-              ),
-            )
-          ],
-        );
-      }).toList(),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        data['question'].toString(),
+                        style: GoogleFonts.lobster(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        data['user_answer'].toString(),
+                        style: GoogleFonts.lobster(
+                          color: data['user_answer'].toString() ==
+                                  data['correct_answer'].toString()
+                              ? Colors.green
+                              : Colors.red,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        data['correct_answer'].toString(),
+                        style: GoogleFonts.lobster(
+                          color: data['user_answer'].toString() ==
+                                  data['correct_answer'].toString()
+                              ? Colors.green
+                              : Colors.red,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }

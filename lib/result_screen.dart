@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pnt_quiz/data/question.dart';
 import 'package:pnt_quiz/question_summary.dart';
 
@@ -13,7 +14,7 @@ class ResultScreen extends StatelessWidget {
     for (var i = 0; i < chosenAnswers.length; i++) {
       summary.add({
         'question_index': i,
-        'question': questions[i].toString(),
+        'question': questions[i].question,
         'correct_answer': questions[i].answers[0],
         'user_answer': chosenAnswers[i],
       });
@@ -37,12 +38,36 @@ class ResultScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                    'Your answered $numCorrectQuestions out of $numTotalQuestions questions correctly!'),
+                  'Your answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+                  style: GoogleFonts.lobster(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(
                   height: 30,
                 ),
                 QuestionSummary(getSummaryDate()),
-                TextButton(onPressed: () {}, child: const Text('Restart Quiz!'))
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.deepPurpleAccent),
+                  ),
+                  icon: const Icon(Icons.refresh),
+                  label: Text(
+                    'Restart Quiz!',
+                    style: GoogleFonts.lobster(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ],
             )));
   }
