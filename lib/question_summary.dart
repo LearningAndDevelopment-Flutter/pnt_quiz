@@ -9,20 +9,20 @@ class QuestionSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 400,
       child: SingleChildScrollView(
         child: Column(
           children: summaryData.map((data) {
-            return FittedBox(
-              fit: BoxFit.contain,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 400,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ClipOval(
+            return Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: SizedBox(
+                width: 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: ClipOval(
                         child: Container(
                           color: data['user_answer'].toString() ==
                                   data['correct_answer'].toString()
@@ -41,45 +41,45 @@ class QuestionSummary extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              data['question'].toString(),
-                              style: GoogleFonts.lobster(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data['question'].toString(),
+                            style: GoogleFonts.lobster(
+                              color: Colors.white,
+                              fontSize: 20,
                             ),
-                            const SizedBox(
-                              height: 5,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            data['user_answer'].toString(),
+                            style: GoogleFonts.lobster(
+                              color: data['user_answer'].toString() ==
+                                      data['correct_answer'].toString()
+                                  ? Colors.green
+                                  : Colors.red,
+                              fontSize: 16,
                             ),
-                            Text(
-                              data['user_answer'].toString(),
-                              style: GoogleFonts.lobster(
-                                color: data['user_answer'].toString() ==
-                                        data['correct_answer'].toString()
-                                    ? Colors.green
-                                    : Colors.red,
-                                fontSize: 16,
-                              ),
+                          ),
+                          Text(
+                            data['correct_answer'].toString(),
+                            style: GoogleFonts.lobster(
+                              color: data['user_answer'].toString() ==
+                                      data['correct_answer'].toString()
+                                  ? Colors.green
+                                  : Colors.red,
+                              fontSize: 16,
                             ),
-                            Text(
-                              data['correct_answer'].toString(),
-                              style: GoogleFonts.lobster(
-                                color: data['user_answer'].toString() ==
-                                        data['correct_answer'].toString()
-                                    ? Colors.green
-                                    : Colors.red,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );

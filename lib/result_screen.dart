@@ -4,9 +4,11 @@ import 'package:pnt_quiz/data/question.dart';
 import 'package:pnt_quiz/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.chosenAnswers});
+  const ResultScreen(this.restartQuiz,
+      {super.key, required this.chosenAnswers});
 
   final List<String> chosenAnswers;
+  final void Function() restartQuiz;
 
   List<Map<String, Object>> getSummaryDate() {
     final List<Map<String, Object>> summary = [];
@@ -53,7 +55,7 @@ class ResultScreen extends StatelessWidget {
                   height: 30,
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: restartQuiz,
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(Colors.deepPurpleAccent),
