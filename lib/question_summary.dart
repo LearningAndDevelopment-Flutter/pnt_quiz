@@ -18,7 +18,7 @@ class QuestionSummary extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  width: 500,
+                  width: 400,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
