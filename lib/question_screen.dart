@@ -33,8 +33,15 @@ class _QuestionQuestionState extends State<QuestionScreen> {
               currentQuestion.question,
               style: GoogleFonts.dancingScript(
                 color: Colors.white,
-                fontSize: 22,
+                fontSize: 23,
                 fontWeight: FontWeight.bold,
+                shadows: [
+                  const Shadow(
+                    blurRadius: 1.0,
+                    color: Color.fromARGB(195, 0, 0, 0),
+                    offset: Offset(1.0, 1.0),
+                  ),
+                ],
               ),
               textAlign: TextAlign.center,
             ),
@@ -44,11 +51,15 @@ class _QuestionQuestionState extends State<QuestionScreen> {
             ...currentQuestion.suffleAnswers().map((answer) {
               return Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: SizedBox(
-                  height: 35,
-                  child: AnswerButton(answer, () {
-                    answerQuestion(answer);
-                  }),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minHeight: 35,
+                  ),
+                  child: SizedBox(
+                    child: AnswerButton(answer, () {
+                      answerQuestion(answer);
+                    }),
+                  ),
                 ),
               );
             })
@@ -62,7 +73,10 @@ class _QuestionQuestionState extends State<QuestionScreen> {
     widget.onSelectAnswer(selectedAnswer);
 
     setState(() {
-      currentQuestionIndex++;
+      currentQuestionIndex += 1;
+      if (currentQuestionIndex == questions.length) {
+        currentQuestionIndex = 0;
+      }
     });
   }
 }

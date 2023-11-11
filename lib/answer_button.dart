@@ -12,10 +12,6 @@ class AnswerButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 100,
-          ),
           backgroundColor: Colors.deepPurpleAccent,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
@@ -27,6 +23,13 @@ class AnswerButton extends StatelessWidget {
         style: GoogleFonts.lobster(
           color: Colors.white,
           fontSize: 16,
+          shadows: [
+            const Shadow(
+              blurRadius: 1.0,
+              color: Color.fromARGB(195, 0, 0, 0),
+              offset: Offset(1.0, 1.0),
+            ),
+          ],
         ),
       ),
     );

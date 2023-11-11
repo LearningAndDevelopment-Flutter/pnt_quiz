@@ -23,6 +23,13 @@ class StartScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 1.0,
+                    color: Color.fromARGB(195, 0, 0, 0),
+                    offset: Offset(1.0, 1.0),
+                  ),
+                ],
               )),
           SizedBox.fromSize(
             size: const Size(0, 40),

@@ -32,21 +32,59 @@ class ResultScreen extends StatelessWidget {
       return data['user_answer'] == data['correct_answer'];
     }).length;
 
-    return SizedBox(
-        width: double.infinity,
-        child: Container(
-            margin: const EdgeInsets.all(40),
+    return SingleChildScrollView(
+      child: SizedBox(
+          width: double.infinity,
+          child: Container(
+            margin: const EdgeInsets.only(top: 50),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  'Your answered $numCorrectQuestions out of $numTotalQuestions questions correctly!',
+                RichText(
+                    text: TextSpan(
+                  text: 'Your answered ',
                   style: GoogleFonts.lobster(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 1.0,
+                          color: Color.fromARGB(195, 0, 0, 0),
+                          offset: Offset(1.0, 1.0),
+                        ),
+                      ]),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: '$numCorrectQuestions ',
+                        style: GoogleFonts.lobster(
+                          color: Colors.lightGreen,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    TextSpan(
+                        text: 'out of ',
+                        style: GoogleFonts.lobster(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    TextSpan(
+                        text: '$numTotalQuestions questions ',
+                        style: GoogleFonts.lobster(
+                          color: Colors.purpleAccent,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    TextSpan(
+                        text: 'correctly!',
+                        style: GoogleFonts.lobster(
+                          color: Colors.lightGreen,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
+                )),
                 const SizedBox(
                   height: 30,
                 ),
@@ -67,10 +105,19 @@ class ResultScreen extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 1.0,
+                          color: Color.fromARGB(195, 0, 0, 0),
+                          offset: Offset(1.0, 1.0),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
-            )));
+            ),
+          )),
+    );
   }
 }

@@ -30,8 +30,10 @@ class _QuizState extends State<Quiz> {
   }
 
   void chooseAnswer(String answer) {
+    if (selectedAnswers.length == questions.length) {
+      selectedAnswers.clear();
+    }
     selectedAnswers.add(answer);
-
     if (selectedAnswers.length == questions.length) {
       setState(() {
         activeScreen = 'result_screen';
@@ -54,19 +56,23 @@ class _QuizState extends State<Quiz> {
     return MaterialApp(
         title: 'PnT Quiz',
         home: Scaffold(
-          body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 104, 58, 183),
-                Color.fromARGB(184, 104, 58, 183),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )),
-            child: activeScreen == 'start_screen'
-                ? StartScreen(switchScreen)
-                : screenWidget,
+          backgroundColor: Colors.red,
+          body: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 141, 79, 248),
+                  Color.fromARGB(195, 140, 89, 230),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
+              child: activeScreen == 'start_screen'
+                  ? StartScreen(switchScreen)
+                  : screenWidget,
+            ),
           ),
         ));
   }
